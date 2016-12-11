@@ -1,0 +1,11 @@
+[ignore]
+    <PROJECT_ROOT>/node_modules/react/node_modules/fbjs/
+    <PROJECT_ROOT>/node_modules/fbjs/
+[include]
+    test
+[libs]
+    decls
+[options]
+    module.name_mapper.extension='css' -> '<PROJECT_ROOT>/flow/stub/css-modules.js'
+    suppress_comment= \\(.\\|\n\\)*\\$SuppressFlowFinding:
+    esproposal.class_static_fields=enable
