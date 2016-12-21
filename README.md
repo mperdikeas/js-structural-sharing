@@ -26,7 +26,8 @@ without affecting the other.
    const a2 = {a1: {a2: [1, 2,3, [1, 3, [1, 2, o]]]}, a4: [1,2,3,4]};           
    assert.isTrue(shareMemory(o, a1));
    assert.isTrue(shareMemory(o, a2));
-   assert.isTrue(shareMemory(a1, a2));           
+   assert.isTrue(shareMemory(a1, a2));
+   assert.isFalse(shareMemory(a1, JSON.parse(JSON.stringify(a2))));   
 
 ```
 

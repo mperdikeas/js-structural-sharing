@@ -47,13 +47,19 @@ describe('shareMemory', function () {
        });
     it('case 4'
        , function () {
-           this.timeout(10000);
+           this.timeout(20000);
            const o = {};
            const a1 = {a1: {a2: {v:1, y:2}, a3: o}, a4: [1,2,3,4]};
-           const a2 = {a1: {a2: [1, 2,3, [1, 3, [1, 2, o]]]}, a4: [1,2,3,4]};           
+           const a2 = {a1: {a2: [1, 2,3, [1, 3, [1, 2, o]]]}, a4: [1,2,3,4]};
+           assert.isTrue(shareMemory(o, o));
            assert.isTrue(shareMemory(o, a1));
            assert.isTrue(shareMemory(o, a2));
-           assert.isTrue(shareMemory(a1, a2));           
+           assert.isTrue(shareMemory(a1, a2));
+           assert.isTrue(shareMemory(a1, a1));
+           assert.isFalse(shareMemory(a1, JSON.parse(JSON.stringify(a2))));
+           assert.isFalse(shareMemory(o, JSON.parse(JSON.stringify(o))));
+           assert.isFalse(shareMemory(a1, JSON.parse(JSON.stringify(a1))));
+           assert.isFalse(shareMemory(a2, JSON.parse(JSON.stringify(a2))));                      
        });
 });
 
